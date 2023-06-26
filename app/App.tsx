@@ -6,25 +6,28 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from './screens/Home';
-import {GameScreen} from './screens/Game';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeScreen } from './screens/Home';
+import { GameScreen } from './screens/Game';
+import { GameModeProvider } from './providers/GameModeContext';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Game" component={GameScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GameModeProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Game" component={GameScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GameModeProvider>
   );
 }
 

@@ -1,14 +1,17 @@
-import {Text, View, Switch} from 'react-native';
-import React, {useState} from 'react';
+import { Text, View, Switch } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { GameModeContext } from '../../providers/GameModeContext';
 
 export const ChangeMode = () => {
-  const [firstMovePlayer, setFirstMovePlayer] = useState(false);
+  const { gameMode, setGameMode } = useContext(GameModeContext);
   return (
     <View>
-      <Text>{firstMovePlayer ? 'Player' : ' AI'}</Text>
+      <Text>{gameMode}</Text>
       <Switch
-        value={firstMovePlayer}
-        onValueChange={() => setFirstMovePlayer(!firstMovePlayer)}
+        value={gameMode === 'Computer' ? true : false}
+        onValueChange={() =>
+          setGameMode(gameMode === 'Computer' ? 'Player' : 'Computer')
+        }
       />
     </View>
   );

@@ -1,7 +1,7 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
-import {AccordionMenu} from '../../components/AccordionMenu';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { AccordionMenu } from '../../components/AccordionMenu';
 import ButtonMenu from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export const HomeScreen = (): JSX.Element => {
   const navigation = useNavigation();

@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { styles } from './styles';
+import { GameModeContext } from '../../providers/GameModeContext';
 
-export const GameScreen = ({navigation}) => {
+export const GameScreen = ({ navigation }) => {
   const [playerMatchCount, setPlayerMatchCount] = useState(0);
+  const { gameMode, setGameMode } = useContext(GameModeContext);
   const [computerMatchCount, setComputerMatchCount] = useState(0);
   const [matchCount, setMatchCount] = useState(25);
-  const [isPlayerTurn, setIsPlayerTurn] = useState(true);
+  const [isPlayerTurn, setIsPlayerTurn] = useState(gameMode === 'Player');
   const [winner, setWinner] = useState<'Player' | 'Computer' | null>(null);
   const [gameOver, setGameOver] = useState(false);
-  const [gameMode, setGameMode] = useState('computer'); // 'computer' or 'player'
 
   useEffect(() => {
     if (matchCount === 0) {
@@ -26,14 +28,14 @@ export const GameScreen = ({navigation}) => {
       !isPlayerTurn &&
       matchCount > 0 &&
       !gameOver &&
-      gameMode === 'computer'
+      (gameMode === 'Computer' || gameMode === 'Player')
     ) {
-      const computerTimer = setTimeout(playComputerTurn, 1000); // Задержка в 1 секунду
+      const computerTimer = setTimeout(playComputerTurn, 1000);
       return () => clearTimeout(computerTimer);
     }
   }, [isPlayerTurn, matchCount, gameOver, gameMode]);
 
-  const handleMatchSelection = count => {
+  const handleMatchSelection = (count) => {
     if (count <= matchCount && isPlayerTurn && !gameOver) {
       setMatchCount(matchCount - count);
       setPlayerMatchCount(playerMatchCount + count);
@@ -65,7 +67,7 @@ export const GameScreen = ({navigation}) => {
     setPlayerMatchCount(0);
     setComputerMatchCount(0);
     setMatchCount(25);
-    setIsPlayerTurn(true);
+    setIsPlayerTurn(gameMode === 'Player');
     setWinner(null);
     setGameOver(false);
   };
@@ -105,12 +107,11 @@ export const GameScreen = ({navigation}) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn || gameMode === 'player'
-                ? styles.activeButton
-                : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
             ]}
             onPress={() => handleMatchSelection(1)}
-            disabled={!isPlayerTurn && gameMode !== 'player'}>
+            disabled={!isPlayerTurn}
+          >
             <Text style={styles.buttonText}>Take 1</Text>
           </TouchableOpacity>
         )}
@@ -118,12 +119,11 @@ export const GameScreen = ({navigation}) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn || gameMode === 'player'
-                ? styles.activeButton
-                : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
             ]}
             onPress={() => handleMatchSelection(2)}
-            disabled={!isPlayerTurn && gameMode !== 'player'}>
+            disabled={!isPlayerTurn}
+          >
             <Text style={styles.buttonText}>Take 2</Text>
           </TouchableOpacity>
         )}
@@ -131,12 +131,11 @@ export const GameScreen = ({navigation}) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn || gameMode === 'player'
-                ? styles.activeButton
-                : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
             ]}
             onPress={() => handleMatchSelection(3)}
-            disabled={!isPlayerTurn && gameMode !== 'player'}>
+            disabled={!isPlayerTurn}
+          >
             <Text style={styles.buttonText}>Take 3</Text>
           </TouchableOpacity>
         )}
@@ -144,46 +143,3 @@ export const GameScreen = ({navigation}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  matchCountText: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginTop: 10,
-  },
-  button: {
-    backgroundColor: '#ccc',
-    padding: 10,
-    marginHorizontal: 5,
-    borderRadius: 5,
-  },
-  activeButton: {
-    backgroundColor: '#007bff',
-    color: 'white',
-  },
-  inactiveButton: {
-    backgroundColor: 'gray',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  turnText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 20,
-  },
-  winnerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 20,
-  },
-});
