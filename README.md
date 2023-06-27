@@ -18,7 +18,6 @@ Before running the Battle Matches game, ensure that you have the following softw
 
 You can check the installed versions of Node.js and npm by running the following commands in your terminal:
 
-```shell
 node --version
 npm --version
 
@@ -26,8 +25,7 @@ If you need to install or update Node.js and npm, you can download the latest ve
 
 For yarn, you can install it globally by following the instructions on the official [yarn website](https://yarnpkg.com).
 
-Please make sure you have the following versions of the required packages installed:
-
+Please make sure you have the following versions of the required packages installed.
 
 
 ## Installation
