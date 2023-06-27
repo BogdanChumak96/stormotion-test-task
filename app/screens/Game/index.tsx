@@ -1,20 +1,22 @@
-import React, { useState, useEffect, useContext, FC } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { GameModeContext } from '../../providers/GameModeContext';
 import { Modes } from '../../constants/modes';
 import { Routes } from '../../constants/router';
 import { PickMatches } from '../../components/PickMatches';
-import { HomeScreenProps } from '../../components/AppRouter';
+import { HomeScreenProps } from '../../constants/types';
 
-export const GameScreen = ({ navigation }: HomeScreenProps) => {
+export const GameScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const { gameMode } = useContext(GameModeContext);
-  const [playerMatchCount, setPlayerMatchCount] = useState(0);
-  const [computerMatchCount, setComputerMatchCount] = useState(0);
-  const [matchCount, setMatchCount] = useState(25);
-  const [isPlayerTurn, setIsPlayerTurn] = useState(gameMode === Modes.PLAYER);
+  const [playerMatchCount, setPlayerMatchCount] = useState<number>(0);
+  const [computerMatchCount, setComputerMatchCount] = useState<number>(0);
+  const [matchCount, setMatchCount] = useState<number>(25);
+  const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(
+    gameMode === Modes.PLAYER,
+  );
   const [winner, setWinner] = useState<Modes.PLAYER | Modes.PC | null>(null);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   useEffect(() => {
     if (matchCount === 0) {
@@ -39,7 +41,10 @@ export const GameScreen = ({ navigation }: HomeScreenProps) => {
     }
   }, [isPlayerTurn, matchCount, gameOver, gameMode]);
 
-  const renderTurnText = (gameOver, isPlayerTurn) => {
+  const renderTurnText = (
+    gameOver: boolean,
+    isPlayerTurn: boolean,
+  ): string | undefined => {
     if (!gameOver && isPlayerTurn) {
       return `${Modes.PLAYER} turn`;
     }
@@ -50,7 +55,7 @@ export const GameScreen = ({ navigation }: HomeScreenProps) => {
   };
   const turnText = renderTurnText(gameOver, isPlayerTurn);
 
-  const handleMatchSelection = (count: number) => {
+  const handleMatchSelection = (count: number): void => {
     if (count <= matchCount && isPlayerTurn && !gameOver) {
       setMatchCount(matchCount - count);
       setPlayerMatchCount(playerMatchCount + count);
@@ -58,7 +63,7 @@ export const GameScreen = ({ navigation }: HomeScreenProps) => {
     }
   };
 
-  const playComputerTurn = () => {
+  const playComputerTurn = (): void => {
     const maxMatchesToTake = Math.min(matchCount, 3);
     let computerCount;
 
@@ -78,7 +83,7 @@ export const GameScreen = ({ navigation }: HomeScreenProps) => {
     setIsPlayerTurn(true);
   };
 
-  const restartGame = () => {
+  const restartGame = (): void => {
     setPlayerMatchCount(0);
     setComputerMatchCount(0);
     setMatchCount(25);
@@ -87,7 +92,7 @@ export const GameScreen = ({ navigation }: HomeScreenProps) => {
     setGameOver(false);
   };
 
-  const returnToMenu = () => {
+  const returnToMenu = (): void => {
     navigation.navigate(Routes.HOME);
   };
 

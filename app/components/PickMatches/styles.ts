@@ -6,10 +6,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  matchCountText: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
   buttonContainer: {
     flexDirection: 'row',
     marginTop: 10,
@@ -30,15 +26,5 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  turnText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 20,
-  },
-  winnerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 20,
   },
 });

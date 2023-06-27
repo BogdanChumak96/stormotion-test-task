@@ -5,7 +5,7 @@ import { ChangeMode } from '../ChangeMode';
 import { styles } from './styles';
 import { Menu } from '../../constants/menu';
 
-export const AccordionMenu = () => {
+export const AccordionMenu: React.FC = () => {
   return (
     <View style={styles.container}>
       <SimpleAccordion

@@ -2,30 +2,13 @@ import React from 'react';
 import { HomeScreen } from '../../screens/Home';
 import { GameScreen } from '../../screens/Game';
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  NativeStackScreenProps,
-  createNativeStackNavigator,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from '../../constants/router';
-
-type RootStackParamList = {
-  [Routes.HOME]: undefined;
-  [Routes.GAME]: undefined;
-};
-
-export type HomeScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  keyof RootStackParamList
->;
-
-export type GameScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  keyof RootStackParamList
->;
+import { RootStackParamList } from '../../constants/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const AppRouter = () => {
+export const AppRouter: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator

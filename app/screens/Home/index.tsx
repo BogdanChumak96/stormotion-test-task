@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
 import { Button, Text, View } from 'react-native';
 import { AccordionMenu } from '../../components/AccordionMenu';
-import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { Routes } from '../../constants/router';
-import { GameScreenProps } from '../../components/AppRouter';
+import { GameScreenProps } from '../../constants/types';
 
-export const HomeScreen = ({ navigation }: GameScreenProps) => {
-  const handleStartGame = () => {
+export const HomeScreen: React.FC<GameScreenProps> = ({ navigation }) => {
+  const handleStartGame = (): void => {
     navigation.navigate(Routes.GAME);
   };
 

@@ -1,14 +1,14 @@
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
+import { styles } from './styles';
+import { IAccordionItem } from '../../constants/types';
 
-interface IAccordionItem {
-  description?: string;
-  children?: React.ReactNode;
-}
-
-export const AccordionItem = ({description, children}: IAccordionItem) => {
+export const AccordionItem: React.FC<IAccordionItem> = ({
+  description,
+  children,
+}) => {
   return (
-    <View style={{flex: 1, width: '100%'}}>
+    <View style={styles.container}>
       <Text>{description}</Text>
       {children}
     </View>
