@@ -32,16 +32,16 @@ Please make sure you have the following versions of the required packages instal
 
 ⚙️ To run the Battle Matches game on your local machine, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository:**
    git clone https://github.com/your-username/battle-matches.git
 
-2. Navigate to the project's directory::
+2. **Navigate to the project's directory:**
    cd battle-matches
 
-3. Install the dependencies:
+3. **Install the dependencies:**
     npm install or yarn
 
-4. Start the game
+4. **Start the game**
     npm start
 
 
