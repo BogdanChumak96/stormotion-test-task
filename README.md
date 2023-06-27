@@ -12,9 +12,9 @@
 
 Before running the Battle Matches game, ensure that you have the following software installed on your machine:
 
-- **Node.js**: v16.0.0 or higher
-- **npm**: v6.0.0 or higher (if using npm as your package manager)
-- **yarn**: v1.22.0 or higher (if using yarn as your package manager)
+- **Node.js**: ![Node.js](https://img.shields.io/badge/Node.js-v16.0.0%20or%20higher-green)
+- **npm**: ![npm](https://img.shields.io/badge/npm-v6.0.0%20or%20higher-red) (if using npm as your package manager)
+- **yarn**: ![yarn](https://img.shields.io/badge/yarn-v1.22.0%20or%20higher-blue) (if using yarn as your package manager)
 
 You can check the installed versions of Node.js and npm by running the following commands in your terminal:
 
