@@ -9,13 +9,17 @@ export const ChangeMode: React.FC = () => {
   const whoFirst = gameMode === Modes.PC ? Modes.PLAYER : Modes.PC;
   const isPcTurn = gameMode === Modes.PC ? true : false;
 
+  const handleChangeValue = () => {
+    setGameMode(whoFirst);
+  };
+
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.title}>Who goes first?</Text>
         <Text>{gameMode}</Text>
       </View>
-      <Switch value={isPcTurn} onValueChange={() => setGameMode(whoFirst)} />
+      <Switch value={isPcTurn} onValueChange={handleChangeValue} />
     </View>
   );
 };

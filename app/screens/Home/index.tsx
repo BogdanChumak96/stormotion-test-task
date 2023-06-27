@@ -5,8 +5,8 @@ import { styles } from './styles';
 import { Routes } from '../../constants/router';
 import { GameScreenProps } from '../../constants/types';
 
-export const HomeScreen: React.FC<GameScreenProps> = ({ navigation }) => {
-  const handleStartGame = (): void => {
+export const HomeScreen = ({ navigation }: GameScreenProps) => {
+  const handleStartGame = () => {
     navigation.navigate(Routes.GAME);
   };
 
