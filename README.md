@@ -1,7 +1,7 @@
 # Battle Matches
 
 <div align="center">
-  <img src="https://png.pngtree.com/png-clipart/20230120/big/pngtree-matches-icon-png-image_8924181.png" alt="Game Icon" width="100" height="100">
+  <img src="https://png.pngtree.com/png-clipart/20230120/big/pngtree-matches-icon-png-image_8924181.png" alt="Game Icon" width="100" height="200">
 </div>
 
 ## Description
