@@ -5,14 +5,14 @@
  * @format
  */
 
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from './screens/Home';
-import { GameScreen } from './screens/Game';
-import { GameModeProvider } from './providers/GameModeContext';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { HomeScreen } from './screens/Home'
+import { GameScreen } from './screens/Game'
+import { GameModeProvider } from './providers/GameModeContext'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </GameModeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

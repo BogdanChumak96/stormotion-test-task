@@ -4,8 +4,8 @@ import { styles } from './styles';
 import { GameModeContext } from '../../providers/GameModeContext';
 
 export const GameScreen = ({ navigation }) => {
+  const { gameMode } = useContext(GameModeContext);
   const [playerMatchCount, setPlayerMatchCount] = useState(0);
-  const { gameMode, setGameMode } = useContext(GameModeContext);
   const [computerMatchCount, setComputerMatchCount] = useState(0);
   const [matchCount, setMatchCount] = useState(25);
   const [isPlayerTurn, setIsPlayerTurn] = useState(gameMode === 'Player');
@@ -107,7 +107,7 @@ export const GameScreen = ({ navigation }) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton
             ]}
             onPress={() => handleMatchSelection(1)}
             disabled={!isPlayerTurn}
@@ -119,7 +119,7 @@ export const GameScreen = ({ navigation }) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton
             ]}
             onPress={() => handleMatchSelection(2)}
             disabled={!isPlayerTurn}
@@ -131,7 +131,7 @@ export const GameScreen = ({ navigation }) => {
           <TouchableOpacity
             style={[
               styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton,
+              isPlayerTurn ? styles.activeButton : styles.inactiveButton
             ]}
             onPress={() => handleMatchSelection(3)}
             disabled={!isPlayerTurn}
