@@ -15,17 +15,22 @@ Before running the Battle Matches game, ensure that you have the following softw
 - **Node.js**: ![Node.js](https://img.shields.io/badge/Node.js-v16.0.0%20or%20higher-green)
 - **npm**: ![npm](https://img.shields.io/badge/npm-v6.0.0%20or%20higher-red) (if using npm as your package manager)
 - **yarn**: ![yarn](https://img.shields.io/badge/yarn-v1.22.0%20or%20higher-blue) (if using yarn as your package manager)
+- **React Native CLI**: ![React Native CLI](https://img.shields.io/badge/React%20Native%20CLI-required-yellow)
+- **Android Studio**: ![Android Studio](https://img.shields.io/badge/Android%20Studio-required-orange)
+
 
 You can check the installed versions of Node.js and npm by running the following commands in your terminal:
 
 node --version
 npm --version
+npx react-native --version
 
 If you need to install or update Node.js and npm, you can download the latest version from the official [Node.js website](https://nodejs.org).
 
 For yarn, you can install it globally by following the instructions on the official [yarn website](https://yarnpkg.com).
 
 Please make sure you have the following versions of the required packages installed.
+
 
 
 ## Installation
@@ -43,7 +48,6 @@ Please make sure you have the following versions of the required packages instal
 
 4. **Start the game**
     npm start
-
 
 ## Contributing
 
