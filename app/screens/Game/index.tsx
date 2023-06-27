@@ -1,23 +1,27 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, FC } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { GameModeContext } from '../../providers/GameModeContext';
+import { Modes } from '../../constants/modes';
+import { Routes } from '../../constants/router';
+import { PickMatches } from '../../components/PickMatches';
+import { HomeScreenProps } from '../../components/AppRouter';
 
-export const GameScreen = ({ navigation }) => {
+export const GameScreen = ({ navigation }: HomeScreenProps) => {
   const { gameMode } = useContext(GameModeContext);
   const [playerMatchCount, setPlayerMatchCount] = useState(0);
   const [computerMatchCount, setComputerMatchCount] = useState(0);
   const [matchCount, setMatchCount] = useState(25);
-  const [isPlayerTurn, setIsPlayerTurn] = useState(gameMode === 'Player');
-  const [winner, setWinner] = useState<'Player' | 'Computer' | null>(null);
+  const [isPlayerTurn, setIsPlayerTurn] = useState(gameMode === Modes.PLAYER);
+  const [winner, setWinner] = useState<Modes.PLAYER | Modes.PC | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     if (matchCount === 0) {
       if (playerMatchCount % 2 === 0) {
-        setWinner('Player');
+        setWinner(Modes.PLAYER);
       } else {
-        setWinner('Computer');
+        setWinner(Modes.PC);
       }
       setGameOver(true);
     }
@@ -28,14 +32,25 @@ export const GameScreen = ({ navigation }) => {
       !isPlayerTurn &&
       matchCount > 0 &&
       !gameOver &&
-      (gameMode === 'Computer' || gameMode === 'Player')
+      (gameMode === Modes.PC || gameMode === Modes.PLAYER)
     ) {
       const computerTimer = setTimeout(playComputerTurn, 1000);
       return () => clearTimeout(computerTimer);
     }
   }, [isPlayerTurn, matchCount, gameOver, gameMode]);
 
-  const handleMatchSelection = (count) => {
+  const renderTurnText = (gameOver, isPlayerTurn) => {
+    if (!gameOver && isPlayerTurn) {
+      return `${Modes.PLAYER} turn`;
+    }
+
+    if (!gameOver && !isPlayerTurn) {
+      return `${Modes.PC} turn`;
+    }
+  };
+  const turnText = renderTurnText(gameOver, isPlayerTurn);
+
+  const handleMatchSelection = (count: number) => {
     if (count <= matchCount && isPlayerTurn && !gameOver) {
       setMatchCount(matchCount - count);
       setPlayerMatchCount(playerMatchCount + count);
@@ -67,13 +82,13 @@ export const GameScreen = ({ navigation }) => {
     setPlayerMatchCount(0);
     setComputerMatchCount(0);
     setMatchCount(25);
-    setIsPlayerTurn(gameMode === 'Player');
+    setIsPlayerTurn(gameMode === Modes.PLAYER);
     setWinner(null);
     setGameOver(false);
   };
 
   const returnToMenu = () => {
-    navigation.navigate('Home');
+    navigation.navigate(Routes.HOME);
   };
 
   return (
@@ -96,50 +111,13 @@ export const GameScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       )}
-      {!gameOver && isPlayerTurn && (
-        <Text style={styles.turnText}>Player's turn</Text>
-      )}
-      {!gameOver && !isPlayerTurn && (
-        <Text style={styles.turnText}>Computer's turn</Text>
-      )}
-      <View style={styles.buttonContainer}>
-        {matchCount >= 1 && (
-          <TouchableOpacity
-            style={[
-              styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton
-            ]}
-            onPress={() => handleMatchSelection(1)}
-            disabled={!isPlayerTurn}
-          >
-            <Text style={styles.buttonText}>Take 1</Text>
-          </TouchableOpacity>
-        )}
-        {matchCount >= 2 && (
-          <TouchableOpacity
-            style={[
-              styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton
-            ]}
-            onPress={() => handleMatchSelection(2)}
-            disabled={!isPlayerTurn}
-          >
-            <Text style={styles.buttonText}>Take 2</Text>
-          </TouchableOpacity>
-        )}
-        {matchCount >= 3 && (
-          <TouchableOpacity
-            style={[
-              styles.button,
-              isPlayerTurn ? styles.activeButton : styles.inactiveButton
-            ]}
-            onPress={() => handleMatchSelection(3)}
-            disabled={!isPlayerTurn}
-          >
-            <Text style={styles.buttonText}>Take 3</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+
+      <Text style={styles.turnText}>{turnText}</Text>
+      <PickMatches
+        isPlayerTurn={isPlayerTurn}
+        handleMatchSelection={handleMatchSelection}
+        matchCount={matchCount}
+      />
     </View>
   );
 };

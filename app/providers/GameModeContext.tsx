@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Modes } from '../constants/modes';
 
 export const GameModeContext = React.createContext({
-  gameMode: 'computer',
+  gameMode: Modes.PC,
   setGameMode: (mode) => {},
 });
 
 export const GameModeProvider = ({ children }) => {
-  const [gameMode, setGameMode] = useState('computer');
+  const [gameMode, setGameMode] = useState(Modes.PC);
 
   const handleSetGameMode = (mode) => {
     setGameMode(mode);

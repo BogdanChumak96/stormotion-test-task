@@ -4,41 +4,41 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   matchCountText: {
     fontSize: 18,
-    marginBottom: 10
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 10,
   },
   button: {
     backgroundColor: '#ccc',
     padding: 10,
     marginHorizontal: 5,
-    borderRadius: 5
+    borderRadius: 5,
   },
   activeButton: {
     backgroundColor: '#007bff',
-    color: 'white'
+    color: 'white',
   },
   inactiveButton: {
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   turnText: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 20
+    marginTop: 20,
   },
   winnerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

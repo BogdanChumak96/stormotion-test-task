@@ -5,30 +5,14 @@
  * @format
  */
 
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { HomeScreen } from './screens/Home'
-import { GameScreen } from './screens/Game'
-import { GameModeProvider } from './providers/GameModeContext'
+import React from 'react';
+import { AppRouter } from './components/AppRouter';
+import { GameModeProvider } from './providers/GameModeContext';
 
-const Stack = createNativeStackNavigator()
-
-function App() {
+export const App = (): JSX.Element => {
   return (
     <GameModeProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Game" component={GameScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AppRouter />
     </GameModeProvider>
-  )
-}
-
-export default App
+  );
+};

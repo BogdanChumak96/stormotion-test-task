@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
 import { SimpleAccordion } from 'react-native-simple-accordion';
-import { AccordionItem } from '../AccordionItem';
 import { ChangeMode } from '../ChangeMode';
-// import {ChangeMode} from '../ChangeMode';
+import { styles } from './styles';
+import { Menu } from '../../constants/menu';
 
 export const AccordionMenu = () => {
   return (
-    <View style={{ flex: 1, width: '100%' }}>
+    <View style={styles.container}>
       <SimpleAccordion
         viewInside={
           <Text>
@@ -18,13 +18,12 @@ export const AccordionMenu = () => {
           </Text>
         }
         showArrows={true}
-        title={'Rules'}
+        title={Menu.RULES}
       />
-      {/*TODO Add change mode soon... */}
       <SimpleAccordion
         viewInside={<ChangeMode />}
         showArrows={true}
-        title={'Settings'}
+        title={Menu.SETTINGS}
       />
     </View>
   );
